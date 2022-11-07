@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "./config/connect.php";
-include "./config/functionStatement.php";
+include_once "../config/connect.php";
+include_once "../config/functionStatement.php";
 // sql to show value into update input
 $adminID = $_GET['updateadminid'] ?? $_POST['updateadminid'];
 $sql = "SELECT * FROM `admins` WHERE `id` = '$adminID'";

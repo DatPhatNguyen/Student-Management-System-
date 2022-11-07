@@ -103,6 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </header>
+    <?php include_once "../pages/typeOfUser.php" ?>
+
     <div class="row mx-auto shadow" style="max-width:65%;border-radius:24px; background:#fff; margin: 40px 0;">
         <div class="col-lg-6 col-sm-6" style="border-top-left-radius:24px;border-bottom-left-radius:24px">
             <img src="../template/images/parent-signup.jpg" class="mx-auto my-3"

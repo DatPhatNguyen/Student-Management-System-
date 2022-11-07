@@ -1,7 +1,7 @@
 <?php
 session_start();
-include './config/connect.php';
-include './config/functionStatement.php';
+include '../config/connect.php';
+include '../config/functionStatement.php';
 $scoreStudentID = $_GET['updatescoreid'] ?? $_POST['updatescoreid'] ?? '';
 $selectStudent = "SELECT * FROM `students` WHERE id = $scoreStudentID";
 $result = executeStatement($selectStudent);
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button class="btn btn-primary ms-4 mt-5">
         <a href="parentlist.php" class="text-decoration-none text-light">Xem danh sách điểm</a>
     </button>
-    <h2 class="text-center text-uppercase my-5" style="font-weight:900;">Chỉnh sửa điểm sinh viên
+    <h2 class="text-center text-uppercase mt-5 mb-4" style="font-weight:900;">Chỉnh sửa điểm sinh viên
     </h2>
     <div class="container mt-3 mb-5 mx-auto shadow " style="max-width:40vw; background:#fff; border-radius: 30px;">
         <form method="POST" class="p-5">

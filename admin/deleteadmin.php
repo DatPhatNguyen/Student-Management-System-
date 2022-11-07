@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "./config/connect.php";
-include "./config/functionStatement.php";
+include_once "../config/connect.php";
+include_once "../config/functionStatement.php";
 if (isset($_GET['deleteadminid'])) {
     $adminID = $_GET['deleteadminid'];
 }

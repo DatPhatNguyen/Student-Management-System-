@@ -1,6 +1,6 @@
 <?php
-include_once "./config/connect.php";
-include_once "./config/functionStatement.php";
+include_once "../config/connect.php";
+include_once "../config/functionStatement.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@ include_once "./config/functionStatement.php";
     <?php
     include_once './template/header.php';
     ?>
-    <div class="mx-auto my-5" style="max-width:90vw">
+    <div class="mx-auto my-5" style="max-width:90vw;padding:10px;   ">
         <h2 class="text-center text-uppercase my-5" style="font-weight:900">Danh sách điểm sinh viên</h2>
         <table class="table table-bordered table-striped text-center align-middle bg-light mt-5 mb-3">
             <thead class="fw-bold">

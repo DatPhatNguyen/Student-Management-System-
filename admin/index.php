@@ -1,4 +1,4 @@
-<?php include './config/connect.php';
+<?php include_once '../config/connect.php';
 session_start();
 if (empty($_SESSION['admin'])) {
     echo '<script type="text/javascript">

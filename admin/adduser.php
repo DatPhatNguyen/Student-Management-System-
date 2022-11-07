@@ -1,7 +1,7 @@
 <?php
 session_start();
-include './config/connect.php';
-include './config/functionStatement.php';
+include_once '../config/connect.php';
+include_once '../config/functionStatement.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = trim(md5(mysqli_real_escape_string($conn, $_POST['password'])));
     $name = validData($_POST['name']);

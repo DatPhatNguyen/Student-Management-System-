@@ -102,7 +102,7 @@ $(document).ready(function() {
     document.addEventListener('mouseup', function(e) {
         e.preventDefault();
         if (e.target !== toast) {
-            toast.hide(700);
+            toast.hide("slow");
         }
     })
 })

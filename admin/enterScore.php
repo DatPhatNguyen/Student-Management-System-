@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once "./config/connect.php";
-include_once "./config/functionStatement.php";
+include_once "../config/connect.php";
+include_once "../config/functionStatement.php";
 $errors = [];
 define('REQUIRE_FIELD_ERROR', 'Vui lòng điền vào trường này');
 $studentScoreID = $_GET['studentscoreid'] ?? $_POST['studentscoreid'] ?? null;

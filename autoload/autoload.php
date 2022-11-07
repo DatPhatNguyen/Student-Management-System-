@@ -11,6 +11,5 @@
 //     include_once $fileName;
 // }
 spl_autoload_register(function ($className) {
-    $folderName = './pages/';
-    require_once($folderName . $className . 'php');
+    include 'pages/' . $className . '.php';
 });

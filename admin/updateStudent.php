@@ -1,7 +1,7 @@
 <?php
 session_start();
-include './config/connect.php';
-include './config/functionStatement.php';
+include '../config/connect.php';
+include '../config/functionStatement.php';
 // get id
 $studentID = $_GET['updatestudentid'] ?? $_POST['updatestudentid'] ?? '';
 // sql to show value into update input
