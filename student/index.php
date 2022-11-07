@@ -6,7 +6,6 @@ if (empty($_SESSION['student'])) {
         window.location.href="signin.php";
     </script>';
 }
-include './autoload.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +24,6 @@ include './autoload.php';
     include_once "../pages/background.php";
     include_once "../pages/about.php";
     include_once "../pages/support.php";
-    // include_once "../pages/menu.php";
     include_once "../pages/menu.php";
     include_once "../pages/contact.php";
     include_once "../pages/backtoTop.php";
