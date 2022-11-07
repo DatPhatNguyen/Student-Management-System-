@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap");
+@mixin rounded($border) {
+  border-radius: $border;
+}
+@mixin button($outline, $border) {
+  outline: $outline;
+  border: $border;
+}
+@mixin image($width, $height: $width) {
+  object-fit: cover;
+  object-position: center;
+  max-width: 100%;
+  max-height: 100%;
+}
+html {
+  font-family: "Roboto", sans-serif;
+}
+html,
+body {
+  scroll-behavior: smooth;
+}
+body {
+  min-height: 100vh;
+  background: #f5f6fa;
+}
+::selection {
+  background: #ff7675;
+  color: #fff;
+}
+// header
+.header {
+  width: 100%;
+  background-color: #fff;
+  .header-container {
+    padding: 12px;
+  }
+  .header-link,
+  a.active {
+    padding: 12px 16px;
+  }
+  .header-link {
+    transition: 0.25s linear;
+  }
+  .header-link:hover {
+    border-radius: 30px;
+    transform: translateZ(0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    border: thin solid #999;
+  }
+  a.active {
+    font-weight: 900;
+    font-size: 20px;
+    border-radius: 24px;
+    background: #f5f5f5;
+  }
+  .header-link {
+    font-size: 20px;
+    color: #000054;
+    font-weight: 700;
+  }
+}
+.footer {
+  background-color: #fff;
+  position: sticky;
+  top: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+// for all button
+button {
+  @include button(none, none);
+}
+// nav.php
+#background {
+  margin: 0 auto;
+}
+#background img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  object-position: center;
+}
+// parent / header button
+.text-button {
+  font-size: 18px;
+  font-weight: 500;
+}
+// admin / index
+.management-title {
+  color: #e84118;
+  font-weight: 700;
+}
+.left-sidebar {
+  color: #000;
+  transition: 0.3s linear;
+}
+.left-sidebar:hover {
+  color: #fff;
+  background: #000;
+  @include rounded(40px);
+}
+.control-bar {
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+// pages/backtotop
+.fa-arrow-up {
+  position: absolute;
+  color: #999;
+  font-size: 30px;
+  bottom: -2700px;
+  padding: 12px;
+  right: 10px;
+  border: thin solid;
+  border-radius: 50%;
+  transition: 0.25s linear;
+}
+.fa-arrow-up:hover {
+  border: thin solid green;
+  color: green;
+}
+.row-space {
+  margin: 60px 0;
+}
+// text error notification
+.text-danger {
+  font-size: 14px;
+}
+// category
+.card {
+  letter-spacing: 1px;
+  color: rgb(180, 180, 180);
+}
+
+.card .btn {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.card:hover .btn {
+  opacity: 1;
+}
+
+.card:hover {
+  border: 1px solid #999;
+  color: #2980b9;
+  color: black;
+}
