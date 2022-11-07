@@ -4,16 +4,18 @@ include "./config/connect.php";
 include "./config/functionStatement.php";
 // sql to show value into update input
 $adminID = $_GET['updateadminid'] ?? $_POST['updateadminid'];
-$query = "SELECT * FROM `admins` WHERE `id` = '$adminID'";
-$result = executeStatement($query);
+$sql = "SELECT * FROM `admins` WHERE `id` = '$adminID'";
+$result = executeStatement($sql);
 $row = $result->fetch_assoc();
 $name = $row['name'];
+echo '<pre>';
+var_dump($name);
+echo '</pre>';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update'])) {
         $name = validData($_POST['name']);
-        $sql = "UPDATE `admins`  SET  `name`= '$name'
+        $sql = "UPDATE `admins`  SET  `id` = '$adminID', `name`= '$name'
         WHERE `id` = '$adminID'";
-        $result  = executeStatement($sql);
         if ($result) {
             echo '<script type="text/javascript">
             window.alert("Chỉnh sửa cán bộ thành công !!");

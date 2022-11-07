@@ -1,7 +1,6 @@
 <?php
-session_start();
-include "./config/connect.php";
-include "./config/functionStatement.php";
+include_once "./config/connect.php";
+include_once "./config/functionStatement.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

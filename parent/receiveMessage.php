@@ -1,6 +1,6 @@
 <?php
-include "./config/connect.php";
-include "./config/functionStatement.php";
+include "../config/connect.php";
+include "../config/functionStatement.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label class="form-label fw-bold ">Tên đăng nhập:</label>
                     <input type="text"
                         class="form-control <?php echo isset($errors['name']) ? 'border border-danger' : '' ?>"
-                        placeholder="Tên đăng nhập cán bộ..." name="name" value=<?php echo $name ?>>
+                        placeholder="Tên đăng nhập cán bộ..." name="name">
                     <p class="text-danger mt-2 "><?php echo isset($errors['name']) ? $errors['name'] : '' ?></p>
                 </div>
                 <div class="mb-3">

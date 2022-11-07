@@ -1,6 +1,6 @@
 <?php
-include "./config/connect.php";
-include "./config/functionStatement.php";
+include "../config/connect.php";
+include "../config/functionStatement.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // $name = htmlspecialchars(strip_tags(mysqli_real_escape_string($conn, $_POST['name'])));
     // $email = htmlspecialchars(strip_tags(mysqli_real_escape_string($conn, $_POST['email'])));
