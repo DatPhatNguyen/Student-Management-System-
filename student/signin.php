@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "../admin/config/connect.php";
-include "../admin/config/functionStatement.php";
+include "./config/connect.php";
+include "./config/functionStatement.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stcode = mysqli_real_escape_string($conn, $_POST['stcode']);
     $password = md5(mysqli_real_escape_string($conn, $_POST['password']));

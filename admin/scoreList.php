@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once '../admin/config/connect.php';
-include_once '../admin/config/functionStatement.php'
+include "./config/connect.php";
+include "./config/functionStatement.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +60,7 @@ include_once '../admin/config/functionStatement.php'
                     <td class="p-3 fw-bold">' . $score['training_score'] . '</td>
                     <td class="p-3 fw-bold">' . $score['learning_score'] . '</td>
                     <td class="p-3">
-                    <button class="btn btn-danger btn-custom ms-2">
+                    <button class="btn btn-primary btn-custom ms-2">
                                 <i class="fa-solid fa-pencil "></i>
                                 <a href="updateScore.php?updatescoreid=' . $score['student_id'] . '"
                                     class="text-white text-decoration-none ms-1">Chỉnh Sửa</a>
@@ -76,7 +76,7 @@ include_once '../admin/config/functionStatement.php'
         // totalPages = ceil(15/5 = 3) -> tao 3 nut
         for ($btn = 1; $btn <= $totalPages; $btn++) {
             echo '
-                <button class="btn btn-primary mx-1 my-3">
+                <button class="btn btn-danger mx-1 my-3">
                 <a class="text-white text-decoration-none" href="scoreList.php?page=' . $btn . '">' . $btn . '</a>
                 </button>
                 ';

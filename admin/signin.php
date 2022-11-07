@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "../admin/config/connect.php";
-include "../admin/config/functionStatement.php";
+include "./config/connect.php";
+include "./config/functionStatement.php";
 $errors = [];
 $check = false;
 define('REQUIRE_FIELD_ERROR', 'Vui lòng điền vào trường này');
