@@ -1,6 +1,6 @@
 <?php
-include "../config/connect.php";
-include "../config/functionStatement.php";
+include_once "../config/connect.php";
+include_once "../config/functionStatement.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@ include "../config/functionStatement.php";
     <style>
     #notification {
         font-size: 30px;
-        padding: 8px;
+        padding: 12px;
         border-radius: 50%;
         background: #999;
         transition: .2s linear;
@@ -87,21 +87,24 @@ include "../config/functionStatement.php";
 <script type="text/javascript">
 $(document).ready(function() {
     var toast = $(".toast").toast();
-    $("#notification").click(function(e) {
+    var notification = document.getElementById("notification");
+    notification.onclick = function(e) {
         e.preventDefault();
-        toast.show();
-        console.log("Hello");
-    })
+        toast.css('display', 'block');
+        setTimeout(function() {
+            toast.hide("slow");
+        }, 5000)
+    };
     $(".btn-close").click(function(e) {
         e.preventDefault();
-        toast.remove();
+        toast.hide(700);
     })
-    // document.addEventListener('mouseup', function(e) {
-    //     e.preventDefault();
-    //     if (e.target !== toast) {
-    //         toast.hide(600);
-    //     }
-    // })
+    document.addEventListener('mouseup', function(e) {
+        e.preventDefault();
+        if (e.target !== toast) {
+            toast.hide(700);
+        }
+    })
 })
 </script>
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "../config/connect.php";
-include "../config/functionStatement.php";
+include_once "../config/connect.php";
+include_once "../config/functionStatement.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,12 +20,12 @@ include '../script.php';
     <?php
     include "header.php"
     ?>
-    <div class="p-5">
+    <div class="p-5" id="content">
         <form method="POST" action="searchName.php" class="mt-5">
             <div class="form-group">
                 <label for="" class="form-label fw-bold mb-3" style="font-size:16px;">Tìm kiếm sinh
                     viên: </label>
-                <input type="text" placeholder="Nhập tên sinh viên hoặc mã số sinh viên.."
+                <input type="text" placeholder="Nhập họ tên sinh viên hoặc mã số sinh viên.."
                     class="w-50 form-control p-2" name="student-search">
                 <a href="searchScore.php">
                     <button class="my-3 btn btn-primary px-3 pt-2 text-center" name="search" type="submit">Tìm sinh
@@ -56,13 +56,13 @@ include '../script.php';
                     if ($search === '') {
                         echo '<script type="text/javascript">
                             window.alert("Bạn phải nhập tên sinh viên !!");
-                            window.location.href="searchScore.php"
+                            window.location.href="searchName.php"
                             </script>';
                     }
                     if (empty($scores)) {
                         echo '<script type="text/javascript">
                             window.alert("Không tìm thấy sinh viên !!");
-                            window.location.href="searchScore.php"
+                            window.location.href="searchName.php"
                             </script>';
                     }
                     foreach ($scores as $score) {
@@ -87,6 +87,8 @@ include '../script.php';
 <script type="text/javascript">
 $(document).ready(function() {
     $("input").focus();
+
+
 })
 </script>
 

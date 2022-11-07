@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "../config/connect.php";
-include "../config/functionStatement.php";
+include_once "../config/connect.php";
+include_once "../config/functionStatement.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,7 @@ include '../script.php';
             <div class="form-group">
                 <label for="" class="form-label fw-bold mb-3" style="font-size:16px;">Tìm kiếm sinh
                     viên: </label>
-                <input type="text" placeholder="Nhập tên sinh viên hoặc mã số sinh viên.."
+                <input type="text" placeholder="Nhập họ tên sinh viên hoặc mã số sinh viên.."
                     class="w-50 form-control p-2" name="student-search">
                 <a href="searchScore.php">
                     <button class="my-3 btn btn-primary px-3 pt-2 text-center" name="search" type="submit">Tìm sinh
