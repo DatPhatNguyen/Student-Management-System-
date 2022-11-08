@@ -21,9 +21,9 @@ if (empty($_SESSION['parent'])) {
 
 <body>
     <?php
-    include_once "../autoload/autoload.php";
+    include_once "autoload.php";
     include_once "../script.php";
-    include_once "./header.php";
+    include_once "header.php";
     include_once "../pages/background.php";
     include_once "../pages/about.php";
     include_once "../pages/support.php";

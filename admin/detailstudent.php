@@ -19,7 +19,7 @@ include_once "../config/functionStatement.php";
 
 <body>
     <button class="btn btn-primary ms-4 mt-5">
-        <a href="studentlist.php" class="text-decoration-none text-light">Xem danh sách</a>
+        <a href="studentlist.php" class="text-decoration-none text-light text-capitalize">Xem danh sách sinh viên</a>
     </button>
     <div class="mx-auto" style="max-width:90%">
         <table class="table table-bordered table-striped text-center align-middle bg-light my-5">

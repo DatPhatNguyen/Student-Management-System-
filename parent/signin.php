@@ -21,9 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = 'Phải đúng dịnh dạng email';
         $check = false;
-    } else if ($passwordLength <= 6) {
-        $errors['password'] = 'Mật khẩu phải lớn hơn 6 kí tự';
-        $check = false;
     } else {
         $sql = "SELECT * FROM `parents` WHERE email = '$email' AND password = '$password'";
         $selectName = "SELECT name FROM `parents` WHERE email = '$email' AND password = '$password'";

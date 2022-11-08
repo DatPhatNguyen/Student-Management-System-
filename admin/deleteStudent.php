@@ -20,7 +20,6 @@ if ($result) {
      </script>";
 }
 ?>
-
 <script type="text/javascript">
 function deleteStudent(id) {
     const option = confirm('Bạn có muốn xóa sinh viên này không?');

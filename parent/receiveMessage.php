@@ -61,7 +61,9 @@ include_once "../config/functionStatement.php";
             </div>
             <div class="toast-body">
                 <?php
-                $sql = "SELECT name FROM `students`  WHERE id= 2";
+                $sql = "SELECT name FROM `students` 
+                JOIN parents ON students.id = parents.student_id  
+                WHERE students.id=  parents.student_id";
                 $messagesToParents = executeResult($sql);
                 foreach ($messagesToParents as $mg) {
                     echo '
@@ -71,13 +73,18 @@ include_once "../config/functionStatement.php";
                 }
                 ?>
                 <?php
-                $sql = "SELECT * FROM `scores` WHERE student_id = 2";
-                $messages = executeResult($sql);
-                foreach ($messages as $message) {
-                    echo '
-                    <li class="lh-lg"><span>Điểm rèn luyện :  <span class="fw-bold">' . $message['training_score'] . '</span></span></li>
-                    <li class="lh-lg"><span>Điểm học tập : <span class="fw-bold"> ' . $message['learning_score'] . '</span></span> </li>
+                $sql = "SELECT scores.tranining_score,scores.learning_scores, students.name  FROM `scores`
+                JOIN parents ON scores.student_id = parents.student_id
+                JOIN students ON scores.student_id = students.id;
+                WHERE parents.student_id = students.id ";
+                $result = executeStatement($sql);
+                if ($result) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '
+                    <li class="lh-lg"><span>Điểm rèn luyện :  <span class="fw-bold">' . $row['training_score'] . '</span></span></li>
+                    <li class="lh-lg"><span>Điểm học tập : <span class="fw-bold"> ' . $row['learning_score'] . '</span></span> </li>
                 ';
+                    }
                 }
                 ?>
             </div>

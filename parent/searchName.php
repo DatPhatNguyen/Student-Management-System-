@@ -87,8 +87,6 @@ include '../script.php';
 <script type="text/javascript">
 $(document).ready(function() {
     $("input").focus();
-
-
 })
 </script>
 
