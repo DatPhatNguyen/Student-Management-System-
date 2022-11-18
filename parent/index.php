@@ -1,10 +1,10 @@
 <?php
 session_start();
 if (empty($_SESSION['parent'])) {
-    echo '<script>
-            window.alert("Trước tiên bạn cần phải đăng nhập !!");
-            window.location.href="signin.php"
-           </script>';
+    echo '<script type="text/javascript">
+        window.alert("Trước tiên bạn cần phải đăng nhập !!");
+        window.location.href="signin.php";
+    </script>';
 }
 ?>
 <!DOCTYPE html>
@@ -21,16 +21,14 @@ if (empty($_SESSION['parent'])) {
 
 <body>
     <?php
-    include_once "autoload.php";
-    include_once "../script.php";
     include_once "header.php";
+    include_once "../script.php";
     include_once "../pages/background.php";
     include_once "../pages/about.php";
     include_once "../pages/support.php";
     include_once "../pages/menu.php";
     include_once "../pages/contact.php";
-    include_once "../pages/backtotop.php";
-    include_once "../autoload/autoload.php";
+    include_once "../pages/backtoTop.php";
     include_once "../template/footer.php";
     ?>
 </body>

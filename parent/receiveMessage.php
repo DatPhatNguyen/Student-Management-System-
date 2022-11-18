@@ -10,7 +10,7 @@ include_once "../config/functionStatement.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php
-    include '../script.php' ?>
+    include_once '../script.php'; ?>
     <style>
     #notification {
         font-size: 30px;
@@ -22,7 +22,7 @@ include_once "../config/functionStatement.php";
         color: #fff;
     }
 
-    #notification:after {
+    /* #notification:after {
         content: "1";
         position: absolute;
         top: -15%;
@@ -34,7 +34,7 @@ include_once "../config/functionStatement.php";
         border-radius: 6px;
         padding: 8px 10px;
         text-align: center;
-    }
+    } */
 
     #notification:hover {
         color: blue;
@@ -42,18 +42,33 @@ include_once "../config/functionStatement.php";
         background: #f5f5f6;
     }
 
-    .toast {
+    #message {
+        min-width: 300px;
+        border-radius: 6px;
+        background-color: #fff;
+        display: none;
         position: absolute;
         top: 10%;
-        right: 10px;
+        right: 85px;
+    }
+
+    .list-unstyled>* {
+        margin-left: 8px;
+    }
+
+    .toast-body {
+        font-size: 15px;
     }
     </style>
+    <?php
+    include '../script.php';
+    ?>
 </head>
 
 <body>
     <div>
         <i class="fa-sharp fa-solid fa-bell" id="notification"></i>
-        <div class="toast mt-2" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide=false>
+        <div class="toast mt-2" id="message" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <strong class="me-auto">Thông báo điểm</strong>
                 <small>Gần đây</small>
@@ -61,31 +76,38 @@ include_once "../config/functionStatement.php";
             </div>
             <div class="toast-body">
                 <?php
-                $sql = "SELECT name FROM `students` 
-                JOIN parents ON students.id = parents.student_id  
-                WHERE students.id=  parents.student_id";
-                $messagesToParents = executeResult($sql);
-                foreach ($messagesToParents as $mg) {
-                    echo '
-                <p>Gửi đến phụ huynh em : <span class="fw-bold">' . $mg['name'] . '</span></p>
-                <p>Kết quả học tập :</p>
-            ';
-                }
+                $parentID = $_SESSION['parent_id'];
+                $sql = "SELECT st.name
+                FROM `students` AS st
+                JOIN `parents` AS p 
+                ON st.id = p.student_id 
+                WHERE $parentID= st.id";
+                $messages = executeStatement($sql);
+                $row = $messages->fetch_assoc();
+                echo '
+                <p>Gửi đến phụ huynh em : <span class="fw-bold">' . $row['name'] . '</span></p>
+                <p>Kết quả học tập :</p>';
                 ?>
                 <?php
-                $sql = "SELECT scores.tranining_score,scores.learning_scores, students.name  FROM `scores`
-                JOIN parents ON scores.student_id = parents.student_id
-                JOIN students ON scores.student_id = students.id;
-                WHERE parents.student_id = students.id ";
-                $result = executeStatement($sql);
-                if ($result) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo '
-                    <li class="lh-lg"><span>Điểm rèn luyện :  <span class="fw-bold">' . $row['training_score'] . '</span></span></li>
-                    <li class="lh-lg"><span>Điểm học tập : <span class="fw-bold"> ' . $row['learning_score'] . '</span></span> </li>
-                ';
-                    }
+                $query = "SELECT s.training_score,s.learning_score
+                FROM `scores` AS s
+                JOIN `students` AS st ON s.student_id = st.id
+                JOIN `parents`  AS p ON s.student_id = p.student_id
+                WHERE s.student_id = st.id  AND $parentID = st.id
+                ";
+                $scores = executeStatement($query);
+                $row = $scores->fetch_assoc();
+                $training_score = $row['training_score'];
+                $learning_score = $row['learning_score'];
+                if (empty($students)) {
+                    error_reporting(0);
+                    ini_set('display_errors', 0);
                 }
+                echo
+                '<ul class="list-unstyled"
+                    <li class="lh-lg list-item"><span>Điểm rèn luyện : <span class="fw-bold">' . $training_score . '</span></span></li>
+                    <li class="lh-lg list-item"><span>Điểm học tập : <span class="fw-bold"> ' . $learning_score . '</span></span></li>
+                 </ul>';
                 ?>
             </div>
         </div>
@@ -93,25 +115,21 @@ include_once "../config/functionStatement.php";
 </body>
 <script type="text/javascript">
 $(document).ready(function() {
-    var toast = $(".toast").toast();
-    var notification = document.getElementById("notification");
-    notification.onclick = function(e) {
+    const message = $("#message");
+    $("#notification").click(function(e) {
         e.preventDefault();
-        toast.css('display', 'block');
-        setTimeout(function() {
-            toast.hide("slow");
-        }, 5000)
-    };
-    $(".btn-close").click(function(e) {
-        e.preventDefault();
-        toast.hide(700);
+        $("#message").css("display", "block");
+    });
+    $('.btn-close').click(function() {
+        message.css('display', 'none');
     })
     document.addEventListener('mouseup', function(e) {
         e.preventDefault();
-        if (e.target !== toast) {
-            toast.hide("slow");
+        if (!$(e.target).is(message)) {
+            message.css("display", "none");
         }
-    })
+    });
+    // })
 })
 </script>
 

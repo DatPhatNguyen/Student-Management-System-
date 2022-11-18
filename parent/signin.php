@@ -23,10 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $check = false;
     } else {
         $sql = "SELECT * FROM `parents` WHERE email = '$email' AND password = '$password'";
-        $selectName = "SELECT name FROM `parents` WHERE email = '$email' AND password = '$password'";
+        $selectName = "SELECT name  FROM `parents` WHERE email = '$email' AND password = '$password'";
+        $selectID = "SELECT parent_id  FROM `parents` WHERE email = '$email' AND password = '$password'";
         $query = executeStatement($selectName);
         while ($row = $query->fetch_assoc()) {
             $name = $row['name'];
+        }
+        $queryID = executeStatement($selectID);
+        while ($row = $queryID->fetch_assoc()) {
+            $parentID = $row['parent_id'];
         }
         $result = executeStatement($sql);
         if ($result) {
@@ -37,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </script>";
                 $check = true;
                 $_SESSION['parent'] = $name;
+                $_SESSION['parent_id'] = $parentID;
             } else {
                 echo "<script language='javascript' type='text/javascript'>
                 window.alert('Email hoặc mật khẩu không chính xác !!');

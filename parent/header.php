@@ -46,7 +46,9 @@
                         </button>
                     </div>';
                 ?>
-                <?php include "receiveMessage.php" ?>
+                <?php
+                include_once "receiveMessage.php"
+                ?>
             </div>
         </div>
     </header>

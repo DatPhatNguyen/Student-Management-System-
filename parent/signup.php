@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirmpassword = md5(mysqli_real_escape_string($conn, $_POST['confirmpassword']));
     $check = false;
     $errors = [];
-    $checked = [];
     define('REQUIRE_FIELD_ERROR', 'Vui lòng điền vào trường này');
     //! check
     if (empty($name) || empty($email) || empty($password) || empty($confirmpassword)) {
@@ -20,23 +19,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($password = $confirmpassword  === 'd41d8cd98f00b204e9800998ecf8427e') {
         $errors['password'] = $errors['confirmpassword'] = REQUIRE_FIELD_ERROR;
     } else if (strlen($name) < 6) {
-        $errors['name'] = "Họ và tên phải  lớn hơn 6 kí tự";
+        $errors['name'] = "Họ và tên phải lớn hơn 6 kí tự";
         $check = false;
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Không đúng định dạng email";
         $check = false;
-    } else if (strlen($password) <= 6) {
-        $errors['password'] = 'Mật khẩu phải lớn hơn 6 kí tự';
-        $check = false;
-    } else if ($confirmpassword !== $password) {
+    }
+    // else if (strlen($password) <= 6) {
+    //     $errors['password'] = 'Mật khẩu phải lớn hơn 6 kí tự';
+    //     $check = false;
+    // } 
+    else if (!strcmp($password, $confirmpassword)) {
         $errors['confirmpassword'] = 'Mật khẩu không trùng khớp';
         $check = false;
-    } else {
-        $sql = "SELECT * FROM `parent` WHERE email = '$email' && name = '$name'";
+    }
+    // } else if ($confirmpassword !== $password) {
+    //     $errors['confirmpassword'] = 'Mật khẩu không trùng khớp';
+    //     $check = false;
+    // } 
+
+
+
+    else {
+        $sql = "SELECT * FROM `parents` WHERE email = '$email' && password = '$password'";
         $result = executeStatement($sql);
         if ($result) {
-            $num = mysqli_num_rows($result);
-            if ($num > 0) {
+            $numberOfAccount = mysqli_num_rows($result);
+            if ($numberOfAccount > 0) {
                 echo "<script language='javascript' type='text/javascript'>
                 window.alert('Email đã tồn tại. Vui lòng nhập email khác !!');
                 window.location.href ='signup.php';
@@ -55,8 +64,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
+    echo '<pre>';
+    var_dump($_POST);
+    echo '</pre>';
 }
-
 ?>
 
 <!DOCTYPE html>
