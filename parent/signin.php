@@ -5,7 +5,6 @@ include_once "../config/functionStatement.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = htmlspecialchars(trim(mysqli_real_escape_string($conn, $_POST['email'])));
     $password = md5(mysqli_real_escape_string($conn, $_POST['password']));
-    $passwordLength = strlen($password);
     $check = false;
     $errors = [];
     define('REQUIRE_FIELD_ERROR', 'Vui lòng điền vào trường này');

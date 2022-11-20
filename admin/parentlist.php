@@ -29,10 +29,11 @@ include "../config/functionStatement.php";
                 <thead class="text-uppercase text-black lh-lg">
                     <tr>
                         <th scope="col" width="15%" class="p-3">Tên phụ huynh</th>
-                        <th scope="col" width="25%" class="p-3">Email phụ huynh</th>
-                        <th scope="col" width="15%" class="p-3">Mã số phụ huynh</th>
-                        <th scope="col" width="15%" class="p-3">Ngày thêm vào</th>
-                        <th scope="col" width="20%" class="p-3">Xóa / Sửa</th>
+                        <th scope="col" width="10%" class="p-3">Email</th>
+                        <th scope="col" width="10%" class="p-3">Mã số</th>
+                        <th scope="col" width="20%" class="p-3">phụ huynh sinh viên</th>
+                        <th scope="col" width="15%" class="p-3">Ngày thêm</th>
+                        <th scope="col" width="17%" class="p-3">Xóa / Sửa</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
@@ -46,7 +47,6 @@ include "../config/functionStatement.php";
                     $page = $_GET['page'] ?? $_POST['page'] ??  $page = 1;
                     $startingLimit = ($page - 1) * $numberRowPerPage;
                     $sql = "SELECT * FROM `parents` limit $startingLimit  ,  $numberRowPerPage";
-
                     $parents = executeResult($sql);
                     if (empty($parents)) {
                         error_reporting(0);
@@ -56,7 +56,8 @@ include "../config/functionStatement.php";
                         echo '<tr>
                         <td class="text-capitalize p-3">' . $parent['name'] . '</td>
                         <td class="p-3">' . $parent['email'] . '</td>
-                        <td class="text-capitalize p-3">' . $parent['parentcode'] . '</td>
+                        <td class="text-capitalize p-3">' . $parent['parentcode'] . '</td>  
+                        <td class="text-capitalize p-3">' . $parent['parentcode'] . '</td>  
                       
                         <td class="p-3">' . $parent['created_at'] . '</td>
                         </td>

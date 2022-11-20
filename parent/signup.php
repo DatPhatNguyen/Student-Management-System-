@@ -2,8 +2,6 @@
 include "../config/connect.php";
 include "../config/functionStatement.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // $name = htmlspecialchars(strip_tags(mysqli_real_escape_string($conn, $_POST['name'])));
-    // $email = htmlspecialchars(strip_tags(mysqli_real_escape_string($conn, $_POST['email'])));
     $name = validData($_POST['name']);
     $email = validData($_POST['email']);
     $password = md5(mysqli_real_escape_string($conn, $_POST['password']));
@@ -24,12 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Không đúng định dạng email";
         $check = false;
-    }
-    // else if (strlen($password) <= 6) {
-    //     $errors['password'] = 'Mật khẩu phải lớn hơn 6 kí tự';
-    //     $check = false;
-    // } 
-    else if (!strcmp($password, $confirmpassword)) {
+    } else if (strlen($password) < 6) {
+        $errors['password'] = 'Mật khẩu phải lớn hơn 6 kí tự';
+        $check = false;
+    } else if (!strcmp($password, $confirmpassword)) {
         $errors['confirmpassword'] = 'Mật khẩu không trùng khớp';
         $check = false;
     }
@@ -37,9 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //     $errors['confirmpassword'] = 'Mật khẩu không trùng khớp';
     //     $check = false;
     // } 
-
-
-
     else {
         $sql = "SELECT * FROM `parents` WHERE email = '$email' && password = '$password'";
         $result = executeStatement($sql);
@@ -64,9 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-    echo '<pre>';
-    var_dump($_POST);
-    echo '</pre>';
 }
 ?>
 

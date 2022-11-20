@@ -54,13 +54,13 @@ include_once '../config/functionStatement.php'
             }
             foreach ($students as $student) {
                 echo '
-                                    <tbody>
+                            <tbody>
                                 <tr>
                                     <td class="text-capitalize">' . $student['name'] . '</td>
                                     <td class="text-capitalize">' . $student['stcode'] . '</td>
                                     <td class="text-uppercase">' . $student['class'] . '</td>
                                     <td>' . $student['yearofStudy'] . '</td>
-                                    <td style="max-width:120px">
+                                    <td>
                                         <button class="btn btn-primary btn-custom">
                                             <i class="fa-solid fa-trash"></i>
                                             <a href="deleteuser.php?deleteid=' . $student['id'] . '"

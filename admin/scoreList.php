@@ -36,8 +36,8 @@ include_once "../config/functionStatement.php";
                 <?php
                 $sql =
                     "SELECT scores.student_id,scores.training_score, scores.learning_score,students.name ,students.yearofStudy,students.stcode,students.class
-                    FROM  `scores` 
-                    JOIN `students` ON scores.student_id = students.id";
+                        FROM  `scores` 
+                        JOIN `students` ON scores.student_id = students.id";
                 $result = executeStatement($sql);
                 $numRows = $result->num_rows;
                 $numberRowPerPage = 5; // moi trang chua 5 hang
@@ -46,8 +46,9 @@ include_once "../config/functionStatement.php";
                 $startingLimit = ($page - 1) * $numberRowPerPage;
                 $sql =
                     "SELECT scores.student_id,scores.training_score, scores.learning_score,students.name ,students.yearofStudy,students.stcode,students.class
-                FROM  `scores` 
-                JOIN `students` ON scores.student_id = students.id  limit $startingLimit  ,  $numberRowPerPage";
+                        FROM  `scores` 
+                        JOIN `students` ON scores.student_id = students.id  
+                        limit $startingLimit  ,  $numberRowPerPage";
                 $scores = executeResult($sql);
                 foreach ($scores as $score) {
                     echo
