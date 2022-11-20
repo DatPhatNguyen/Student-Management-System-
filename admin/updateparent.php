@@ -1,16 +1,15 @@
 <?php
 session_start();
-include './config/connect.php';
-include './config/functionStatement.php';
+include_once '../config/connect.php';
+include_once '../config/functionStatement.php';
 // get id
-$parentID = $_GET['updateparentid'] ?? $_POST['updateparentid'] ?? '';
+$parentID = $_GET['updateparentid'] ?? $_POST['updateparentid'] ?? null;
 // sql to show value into update input
-$sql = "SELECT * FROM `parents` WHERE parent_id = $parentID";
+$sql = "SELECT * FROM `parents` WHERE `parent_id` = '$parentID'";
 $result = executeStatement($sql);
 $row = $result->fetch_assoc();
 $name = $row['name'];
 $parentcode = $row['parentcode'];
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update'])) {
         $name = validData($_POST['name']);
@@ -51,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label class="form-label fw-bold">Tên phụ huynh:</label>
                 <input type="text" class="form-control" placeholder="Nguyễn Văn A..." name="name" autocomplete="off"
-                    value=<?php echo (isset($name)) ? $name : '' ?>>
+                    value="<?php echo (isset($name)) ? $name : '' ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label fw-bold">Mã số phụ huynh:</label>

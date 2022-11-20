@@ -57,11 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label class="form-label fw-bold">Tên sinh viên:</label>
                 <input type="text" class="form-control" placeholder="Nguyễn Văn A..." autocomplete="off"
-                    value=<?php echo (isset($name)) ? $name : '' ?>>
+                    value="<?php echo (isset($name)) ? $name : '' ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label fw-bold">Mã số sinh viên: </label>
-                <input type="text" class="form-control" placeholder="Nguyễn Văn A..." autocomplete="off"
+                <input type="text" class="form-control" placeholder="B1900000" autocomplete="off"
                     value=<?php echo (isset($stcode)) ? $stcode : '' ?>>
             </div>
             <div class="mb-3">

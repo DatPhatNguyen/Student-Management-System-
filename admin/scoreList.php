@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once "../config/connect.php";
 include_once "../config/functionStatement.php";
 ?>
@@ -23,7 +24,7 @@ include_once "../config/functionStatement.php";
         <table class="table table-bordered table-striped text-center align-middle bg-light mt-5 mb-3">
             <thead class="fw-bold">
                 <tr>
-                    <td class="text-uppercase p-3" style="font-size:18px">ID</td>
+                    <td class="text-uppercase p-3" style="font-size:18px" width="10%">ID</td>
                     <td class="text-uppercase p-3" style="font-size:18px">Tên sinh viên</td>
                     <td class="text-uppercase p-3" style="font-size:18px">Mã số sinh viên</td>
                     <td class="text-uppercase p-3" style="font-size:18px">Lớp</td>
@@ -36,9 +37,10 @@ include_once "../config/functionStatement.php";
             <tbody>
                 <?php
                 $sql =
-                    "SELECT scores.student_id,scores.training_score, scores.learning_score,students.name ,students.yearofStudy,students.stcode,students.class
-                        FROM  `scores` 
-                        JOIN `students` ON scores.student_id = students.id";
+                    "SELECT s.student_id,s.training_score, s.learning_score,st.name ,st.yearofStudy,st.stcode,st.class
+                        FROM  `scores` AS s
+                        JOIN `students` AS st 
+                        ON s.student_id = st.id";
                 $result = executeStatement($sql);
                 $numRows = $result->num_rows;
                 $numberRowPerPage = 5; // moi trang chua 5 hang
@@ -46,9 +48,10 @@ include_once "../config/functionStatement.php";
                 $page = $_GET['page'] ?? $_POST['page'] ??  $page = 1;
                 $startingLimit = ($page - 1) * $numberRowPerPage;
                 $sql =
-                    "SELECT students.id,scores.student_id,scores.training_score, scores.learning_score,students.name ,students.yearofStudy,students.stcode,students.class
-                        FROM  `scores` 
-                        JOIN `students` ON scores.student_id = students.id 
+                    "SELECT st.id,s.student_id,s.training_score, s.learning_score,st.name ,st.yearofStudy,st.stcode,st.class
+                        FROM  `scores` AS s
+                        JOIN `students` AS st 
+                        ON s.student_id = st.id 
                         limit $startingLimit  ,  $numberRowPerPage";
                 $scores = executeResult($sql);
                 foreach ($scores as $score) {

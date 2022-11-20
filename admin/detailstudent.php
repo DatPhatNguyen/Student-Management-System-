@@ -37,17 +37,16 @@ include_once "../config/functionStatement.php";
             <tbody class="table-group-divider">
                 <?php
                 date_default_timezone_set('Asia/Ho_Chi_Minh');
-                $studentID = $_GET['detailid'] ?? $_POST['detailid'];
+                $studentID = $_GET['detailid'] ?? $_POST['detailid'] ?? null;
                 $sql = sqlSelectAllCondition('students', "id = '$studentID'");
                 $students = executeResult($sql);
-
                 //todo: get parent name
                 $selectParentName = "SELECT p.name FROM `parents` AS p 
                     JOIN `students` AS st 
                     ON p.student_id = st.id 
                     WHERE p.parent_id = $studentID";
-                $getparentName = executeStatement($selectParentName);
-                $row = $getparentName->fetch_assoc();
+                $getParentName = executeStatement($selectParentName);
+                $row = $getParentName->fetch_assoc();
                 $parentName = $row['name'];
                 $sql = sqlSelectAll('students');
                 if (empty($students)) {

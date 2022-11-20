@@ -5,13 +5,14 @@ include_once "../config/functionStatement.php";
 $errors = [];
 define('REQUIRE_FIELD_ERROR', 'Vui lòng điền vào trường này');
 $studentScoreID = $_GET['studentscoreid'] ?? $_POST['studentscoreid'] ?? null;
+
 $sql = "SELECT stcode FROM students WHERE `id` = '$studentScoreID'";
 $result = executeStatement($sql);
 $row = mysqli_fetch_row($result);
 $stcode = $row[0];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $training_score = mysqli_real_escape_string($conn, $_POST['training_score']);
-    $learning_score = mysqli_real_escape_string($conn, $_POST['learning_score']);
+    $training_score = validData($_POST['training_score']);
+    $learning_score = validData($_POST['learning_score']);
     $check = false;
     if (empty($training_score) || empty($learning_score)) {
         $errors['training_score'] = $errors['learning_score'] = REQUIRE_FIELD_ERROR;

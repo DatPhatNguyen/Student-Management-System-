@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="mb-3">
                 <label class="form-label fw-bold">Tên sinh viên:</label>
                 <input type="text" class="form-control  " placeholder="Nguyễn Văn A..." name="name"
-                    value=<?php echo isset($name) ? $name : "" ?>>
+                    value="<?php echo isset($name) ? $name : "" ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label fw-bold">Mã số sinh viên:</label>

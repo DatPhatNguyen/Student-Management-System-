@@ -20,7 +20,7 @@ include_once '../config/functionStatement.php'
                 viên: </label>
             <input type="text" placeholder="Nhập tên sinh viên hoặc mã số sinh viên.." class="w-50 form-control p-2"
                 name="student-search">
-            <a href="./searchStudent.php">
+            <a href="searchStudent.php">
                 <button class="my-3 btn btn-primary px-3 pt-2 text-center" name="search" type="submit">Tìm sinh
                     viên
                 </button>

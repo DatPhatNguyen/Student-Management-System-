@@ -17,8 +17,9 @@ echo '</pre>';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update'])) {
         $name = validData($_POST['name']);
-        $sql = "UPDATE `admins` SET `id` = '$adminID', `name`= '$name'
-        WHERE `id` = '$adminID'";
+        $sql = "UPDATE `admins` 
+            SET `id` = '$adminID', `name`= '$name'
+            WHERE `id` = '$adminID'";
         $result = executeStatement($sql);
         if ($result) {
             echo '<script type="text/javascript">
@@ -54,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label class="form-label fw-bold">Tên đăng nhập admin:</label>
                 <input type="text" class="form-control" placeholder="Tên đăng nhập..." autocomplete="off" name="name"
-                    value=<?php echo isset($name) ? $name : '' ?>>
+                    value="<?php echo isset($name) ? $name : '' ?>">
             </div>
             <div>
                 <button class="btn btn-success w-100 px-4 mt-2 text-capitalize rounded-pill" name="update"
