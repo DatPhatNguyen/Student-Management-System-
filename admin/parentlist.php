@@ -47,17 +47,6 @@ include "../config/functionStatement.php";
                     $startingLimit = ($page - 1) * $numberRowPerPage;
                     $sql = "SELECT * FROM `parents` limit $startingLimit  ,  $numberRowPerPage";
                     $parents = executeResult($sql);
-
-                    // $sql = "SELECT p.* , st.name FROM `parents` AS p
-                    // JOIN `students` AS st 
-                    // ON p.student_id = st.id 
-                    // WHERE st.id = p.parent_id";
-                    // $getStudentName = executeStatement($selectParentName);
-                    // $row = $getStudentName->fetch_assoc();
-                    // $studentName = $row['name'];
-                    // $parents = executeResult($sql);
-
-                    $parentCode = rand(1000, 1099);
                     if (empty($parents)) {
                         error_reporting(0);
                         ini_set('display_errors', 0);

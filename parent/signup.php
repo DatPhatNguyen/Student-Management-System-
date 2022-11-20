@@ -4,8 +4,8 @@ include "../config/functionStatement.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = validData($_POST['name']);
     $email = validData($_POST['email']);
-    $password = md5(mysqli_real_escape_string($conn, $_POST['password']));
-    $confirmpassword = md5(mysqli_real_escape_string($conn, $_POST['confirmpassword']));
+    $password = trim(md5(mysqli_real_escape_string($conn, $_POST['password'])));
+    $confirmpassword = trim(md5(mysqli_real_escape_string($conn, $_POST['confirmpassword'])));
     $check = false;
     $errors = [];
     define('REQUIRE_FIELD_ERROR', 'Vui lòng điền vào trường này');
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else if (strlen($password) < 6) {
         $errors['password'] = 'Mật khẩu phải lớn hơn 6 kí tự';
         $check = false;
-    } else if (!strcmp($password, $confirmpassword)) {
+    } else if (!strcmp($confirmpassword, $password)) {
         $errors['confirmpassword'] = 'Mật khẩu không trùng khớp';
         $check = false;
     }
