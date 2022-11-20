@@ -23,6 +23,7 @@ include_once "../config/functionStatement.php";
         <table class="table table-bordered table-striped text-center align-middle bg-light mt-5 mb-3">
             <thead class="fw-bold">
                 <tr>
+                    <td class="text-uppercase p-3" style="font-size:18px">ID</td>
                     <td class="text-uppercase p-3" style="font-size:18px">Tên sinh viên</td>
                     <td class="text-uppercase p-3" style="font-size:18px">Mã số sinh viên</td>
                     <td class="text-uppercase p-3" style="font-size:18px">Lớp</td>
@@ -45,14 +46,15 @@ include_once "../config/functionStatement.php";
                 $page = $_GET['page'] ?? $_POST['page'] ??  $page = 1;
                 $startingLimit = ($page - 1) * $numberRowPerPage;
                 $sql =
-                    "SELECT scores.student_id,scores.training_score, scores.learning_score,students.name ,students.yearofStudy,students.stcode,students.class
+                    "SELECT students.id,scores.student_id,scores.training_score, scores.learning_score,students.name ,students.yearofStudy,students.stcode,students.class
                         FROM  `scores` 
-                        JOIN `students` ON scores.student_id = students.id  
+                        JOIN `students` ON scores.student_id = students.id 
                         limit $startingLimit  ,  $numberRowPerPage";
                 $scores = executeResult($sql);
                 foreach ($scores as $score) {
                     echo
                     '<tr>
+                    <td class="p-3 text-capitalize ">' . $score['id'] . '</td>
                     <td class="p-3 text-capitalize ">' . $score['name'] . '</td>
                     <td class="p-3">' . $score['stcode'] . '</td>
                     <td class="p-3 text-uppercase">' . $score['class'] . '</td>
