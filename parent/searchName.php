@@ -17,9 +17,37 @@ include '../script.php';
 
 <body>
     <!-- search student first -->
-    <?php
-    include "header.php"
-    ?>
+    <header class="header" id="header" style="background:#fff;">
+        <div class="container-fluid mx-auto shadow header-container" id="top">
+            <div class=" d-flex justify-content-between  align-items-center mx-5">
+                <!-- index logo -->
+                <div>
+                    <a href='index.php'>
+                        <img src='../template/images/logo-ctu.png' class='d-inline-block'
+                            style='width:60px; height:auto;'>
+                    </a>
+                    <a href="index.php" class="text-capitalize text-success text-decoration-none active ms-3">Trang
+                        chủ</a>
+                </div>
+                <!-- header / navigate   -->
+                <?php echo isset($_SESSION['parent'])
+                    ?
+                    '<div class="pt-1 mt-1">
+                    <p class="me-3" style="font-weight:700; font-size:18px; display:inline-block">' . $_SESSION['parent'] . '</p>
+                    <button type="submit" class=" border btn btn-danger py-2 px-4 text-center ">
+                        <a href="../pages/logout.php" class="text-white text-decoration-none text-capitalize text-button">Đăng xuất</a>
+                    </button>
+                </div>'
+                    : ' <div class="pt-1">
+                                <button type="submit" class=" border btn btn-danger py-2 px-4 text-center ms-3 ">
+                    <a href="signin.php" class="text-white text-decoration-none text-capitalize text-button">Đăng
+                        nhập</a>    
+                </button>
+            </div>';
+                ?>
+            </div>
+        </div>
+    </header>
     <div class="p-5" id="content">
         <form method="POST" action="searchName.php" class="mt-5">
             <div class="form-group">
@@ -36,7 +64,7 @@ include '../script.php';
             <hr>
         </form>
         <!-- search score after -->
-        <h3 class="my-5 text-center text-uppercase">Thông tin sinh viên</h3>
+        <h3 class="my-5 text-center text-uppercase" style="font-weight:900">Thông tin sinh viên</h3>
         <table class="table table-striped table-bordered text-center align-middle bg-light my-5">
             <thead class="text-uppercase text-black lh-lg">
                 <tr>
@@ -52,27 +80,27 @@ include '../script.php';
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $search = $_POST['student-search'];
                     $sql = "SELECT * FROM `students` WHERE name like '%$search%' OR stcode like '%$search%'";
-                    $scores = executeResult($sql);
+                    $students = executeResult($sql);
                     if ($search === '') {
                         echo '<script type="text/javascript">
                             window.alert("Bạn phải nhập tên sinh viên !!");
                             window.location.href="searchName.php"
                             </script>';
                     }
-                    if (empty($scores)) {
+                    if (empty($students)) {
                         echo '<script type="text/javascript">
                             window.alert("Không tìm thấy sinh viên !!");
                             window.location.href="searchName.php"
                             </script>';
                     }
-                    foreach ($scores as $score) {
+                    foreach ($students as $student) {
                         echo '
                 <tr>
-                    <td class="text-capitalize p-3">' . $score['name'] . '</td>
-                    <td class="text-capitalize p-3">' . $score['stcode'] . '</td>
-                    <td class="text-uppercase p-3">'  . $score['class'] . '</td>
-                    <td class="text-capitalize p-3">' . $score['major'] . '</td>
-                    <td class="text-capitalize p-3">' . $score['yearofStudy'] . '</td>
+                    <td class="text-capitalize p-3">' . $student['name'] . '</td>
+                    <td class="text-capitalize p-3">' . $student['stcode'] . '</td>
+                    <td class="text-uppercase p-3">'  . $student['class'] . '</td>
+                    <td class="text-capitalize p-3">' . $student['major'] . '</td>
+                    <td class="text-capitalize p-3">' . $student['yearofStudy'] . '</td>
                 </tr>';
                     }
                 }

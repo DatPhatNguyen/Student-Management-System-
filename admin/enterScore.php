@@ -5,6 +5,8 @@ include_once "../config/functionStatement.php";
 $errors = [];
 define('REQUIRE_FIELD_ERROR', 'Vui lòng điền vào trường này');
 $studentScoreID = $_GET['studentscoreid'] ?? $_POST['studentscoreid'] ?? null;
+
+
 $sql = "SELECT stcode FROM students WHERE `id` = '$studentScoreID'";
 $result = executeStatement($sql);
 $row = mysqli_fetch_row($result);

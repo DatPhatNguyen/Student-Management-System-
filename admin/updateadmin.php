@@ -14,15 +14,18 @@ echo '</pre>';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update'])) {
         $name = validData($_POST['name']);
-        $sql = "UPDATE `admins`  SET  `id` = '$adminID', `name`= '$name'
-        WHERE `id` = '$adminID'";
+        $sql = "UPDATE `admins`  SET  admins.id = '$adminID', admins.name= '$name'
+        WHERE admins.id = '$adminID'";
         if ($result) {
             echo '<script type="text/javascript">
             window.alert("Chỉnh sửa cán bộ thành công !!");
-            window.location.href="adminlist.php"
-        </script>';
+            </script>';
         }
+        echo '<pre>';
+        var_dump($_POST);
+        echo '</pre>';
     }
+    // window.location.href="adminlist.php"
 }
 ?>
 <!DOCTYPE html>

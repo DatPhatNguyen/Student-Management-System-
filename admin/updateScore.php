@@ -3,11 +3,14 @@ session_start();
 include '../config/connect.php';
 include '../config/functionStatement.php';
 $scoreStudentID = $_GET['updatescoreid'] ?? $_POST['updatescoreid'] ?? '';
+
+// get name and stcode
 $selectStudent = "SELECT * FROM `students` WHERE id = $scoreStudentID";
 $result = executeStatement($selectStudent);
 $row = $result->fetch_assoc();
 $name = $row['name'];
 $stcode = $row['stcode'];
+// get scores
 $selectScore = "SELECT * FROM `scores` WHERE `student_id` = '$scoreStudentID'";
 $result = executeStatement($selectScore);
 $scoreRow = $result->fetch_assoc();
@@ -18,7 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $training_score = validData($_POST['training_score']);
         $learning_score = validData($_POST['learning_score']);
         $sql
-            = "UPDATE `scores` SET `student_id` ='$scoreStudentID', `training_score`='$training_score' WHERE `student_id` = '$scoreStudentID'";
+            = "UPDATE `scores` 
+                    SET `student_id` ='$scoreStudentID', `training_score`='$training_score', `learning_score` = '$learning_score' 
+                    WHERE `student_id` = '$scoreStudentID'";
         $result  = executeStatement($sql);
         if ($result) {
             echo "<script language='javascript' type='text/javascript'>
@@ -43,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php include "./template/header.php" ?>
     <button class="btn btn-primary ms-4 mt-5">
-        <a href="parentlist.php" class="text-decoration-none text-light">Xem danh sách điểm</a>
+        <a href="scoreList.php" class="text-decoration-none text-light">Xem danh sách điểm</a>
     </button>
     <h2 class="text-center text-uppercase mt-5 mb-4" style="font-weight:900;">Chỉnh sửa điểm sinh viên
     </h2>

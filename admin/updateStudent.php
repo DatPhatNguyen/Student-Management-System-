@@ -21,7 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $yearofStudy = $_POST['yearofStudy'];
         $major = $_POST['major'];
         $sql =
-            "UPDATE `students` SET `id` ='$studentID', `name`='$name' , `stcode` = '$stcode', `class` = '$class' , `major` = '$major' WHERE `id` = '$studentID'";
+            "UPDATE `students` 
+                SET `id` ='$studentID', `name`='$name' , `stcode` = '$stcode', `class` = '$class' , `major` = '$major' 
+                WHERE `id` = '$studentID'";
         $result  = executeStatement($sql);
         if ($result) {
             echo "<script language='javascript' type='text/javascript'>
@@ -29,6 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 window.location.href='studentlist.php';   
                 </script>";
         } else {
+            echo "<script language='javascript' type='text/javascript'>
+            window.alert('Chỉnh sửa sinh viên thât bại');
+            window.location.href='updateStudent.php';   
+            </script>";
         }
     }
 }

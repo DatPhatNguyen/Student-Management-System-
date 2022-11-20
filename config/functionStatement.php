@@ -31,6 +31,7 @@ function validData($data)
     $data = mysqli_real_escape_string($conn, $data);
     $data = trim($data);
     $data = strip_tags($data);
+    $data = htmlspecialchars($data);
     return $data;
 }
 function sqlSelectAll($tableName)

@@ -15,7 +15,6 @@ include_once "../config/functionStatement.php";
 <body>
     <h1 class="text-capitalize my-4 fw-bold">bảng thống kê</h1>
     <div class="container mx-auto d-flex align-items-center mt-5" style="gap:30px; max-width:100%; padding:0;">
-
         <div class=" p-4" style="width:23vw; height: 24vh;background:#f7d794; border-radius:24px;">
             <h6 class="text-capitalize ">Sinh viên</h6>
             <h1 class="fw-bold mb-3" style="color:#1e272e;"><?php

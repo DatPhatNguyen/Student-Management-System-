@@ -57,10 +57,10 @@ include_once "../config/functionStatement.php";
                     <td class="p-3">' . $score['stcode'] . '</td>
                     <td class="p-3 text-uppercase">' . $score['class'] . '</td>
                     <td class="p-3 text-uppercase">' . $score['yearofStudy'] . '</td>
-                    <td class="p-3 fw-bold">' . $score['training_score'] . '</td>
-                    <td class="p-3 fw-bold">' . $score['learning_score'] . '</td>
+                    <td class="p-3 ">' . $score['training_score'] . '</td>
+                    <td class="p-3 ">' . $score['learning_score'] . '</td>
                     <td class="p-3">
-                    <button class="btn btn-primary btn-custom ms-2">
+                    <button class="btn btn-success btn-custom ms-2">
                                 <i class="fa-solid fa-pencil "></i>
                                 <a href="updateScore.php?updatescoreid=' . $score['student_id'] . '"
                                     class="text-white text-decoration-none ms-1">Chỉnh Sửa</a>

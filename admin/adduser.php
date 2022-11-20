@@ -28,7 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['class'] = "Sai định dạng lớp";
         $check = false;
     } else {
-        $sql = "INSERT INTO `students` (name,stcode ,password,class,yearofStudy,major) VALUES ('$name','$stcode','$password','$class','$yearofStudy','$major')";
+        $sql = "INSERT INTO `students` 
+            (name,stcode ,password,class,yearofStudy,major) 
+            VALUES ('$name','$stcode','$password','$class','$yearofStudy','$major')";
         $result  = executeStatement($sql);
         if ($result) {
             echo "<script language='javascript' type='text/javascript'>

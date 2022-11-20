@@ -7,10 +7,10 @@ $parentID = $_GET['updateparentid'] ?? $_POST['updateparentid'] ?? '';
 // sql to show value into update input
 $sql = "SELECT * FROM `parents` WHERE parent_id = $parentID";
 $result = executeStatement($sql);
-while ($row = $result->fetch_assoc()) {
-    $name = $row['name'];
-    $parentcode = $row['parentcode'];
-}
+$row = $result->fetch_assoc();
+$name = $row['name'];
+$parentcode = $row['parentcode'];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update'])) {
         $name = validData($_POST['name']);
@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 window.alert('Chỉnh sửa phụ huynh thành công');
                 window.location.href='parentlist.php';   
                 </script>";
-        } else {
         }
     }
 }
