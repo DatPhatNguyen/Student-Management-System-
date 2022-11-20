@@ -3,10 +3,13 @@ session_start();
 include_once "../config/connect.php";
 include_once "../config/functionStatement.php";
 // sql to show value into update input
-$adminID = $_GET['updateadminid'] ?? $_POST['updateadminid'];
+$adminID = $_GET['updateadminid'] ?? $_POST['updateadminid'] ?? null;
 $sql = "SELECT * FROM `admins` WHERE `id` = '$adminID'";
 $result = executeStatement($sql);
 $row = $result->fetch_assoc();
+echo '<pre>';
+var_dump($row);
+echo '</pre>';
 $name = $row['name'];
 echo '<pre>';
 var_dump($name);
@@ -14,18 +17,16 @@ echo '</pre>';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update'])) {
         $name = validData($_POST['name']);
-        $sql = "UPDATE `admins`  SET  admins.id = '$adminID', admins.name= '$name'
-        WHERE admins.id = '$adminID'";
+        $sql = "UPDATE `admins` SET `id` = '$adminID', `name`= '$name'
+        WHERE `id` = '$adminID'";
+        $result = executeStatement($sql);
         if ($result) {
             echo '<script type="text/javascript">
-            window.alert("Chỉnh sửa cán bộ thành công !!");
+             window.alert("Chỉnh sửa cán bộ thành công !!");
+             window.location.href="adminlist.php"
             </script>';
         }
-        echo '<pre>';
-        var_dump($_POST);
-        echo '</pre>';
     }
-    // window.location.href="adminlist.php"
 }
 ?>
 <!DOCTYPE html>

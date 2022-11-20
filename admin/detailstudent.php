@@ -43,9 +43,9 @@ include_once "../config/functionStatement.php";
 
                 //todo: get parent name
                 $selectParentName = "SELECT p.name FROM `parents` AS p 
-                JOIN `students` AS st 
-                ON p.student_id = st.id 
-                WHERE p.parent_id = $studentID";
+                    JOIN `students` AS st 
+                    ON p.student_id = st.id 
+                    WHERE p.parent_id = $studentID";
                 $getparentName = executeStatement($selectParentName);
                 $row = $getparentName->fetch_assoc();
                 $parentName = $row['name'];

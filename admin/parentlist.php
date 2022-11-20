@@ -29,11 +29,10 @@ include "../config/functionStatement.php";
                 <thead class="text-uppercase text-black lh-lg">
                     <tr>
                         <th scope="col" width="15%" class="p-3">Tên phụ huynh</th>
-                        <th scope="col" width="10%" class="p-3">Email</th>
-                        <th scope="col" width="10%" class="p-3">Mã số</th>
-                        <th scope="col" width="20%" class="p-3">phụ huynh sinh viên</th>
-                        <th scope="col" width="15%" class="p-3">Ngày thêm</th>
-                        <th scope="col" width="17%" class="p-3">Xóa / Sửa</th>
+                        <th scope="col" class="p-3">Email phụ huynh</th>
+                        <th scope="col" class="p-3">Mã số phụ huynh</th>
+                        <th scope="col" width="20%" class="p-3">Ngày thêm</th>
+                        <th scope="col" width="20%" class="p-3">Xóa / Sửa</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
@@ -48,6 +47,17 @@ include "../config/functionStatement.php";
                     $startingLimit = ($page - 1) * $numberRowPerPage;
                     $sql = "SELECT * FROM `parents` limit $startingLimit  ,  $numberRowPerPage";
                     $parents = executeResult($sql);
+
+                    // $sql = "SELECT p.* , st.name FROM `parents` AS p
+                    // JOIN `students` AS st 
+                    // ON p.student_id = st.id 
+                    // WHERE st.id = p.parent_id";
+                    // $getStudentName = executeStatement($selectParentName);
+                    // $row = $getStudentName->fetch_assoc();
+                    // $studentName = $row['name'];
+                    // $parents = executeResult($sql);
+
+                    $parentCode = rand(1000, 1099);
                     if (empty($parents)) {
                         error_reporting(0);
                         ini_set('display_errors', 0);
@@ -57,8 +67,6 @@ include "../config/functionStatement.php";
                         <td class="text-capitalize p-3">' . $parent['name'] . '</td>
                         <td class="p-3">' . $parent['email'] . '</td>
                         <td class="text-capitalize p-3">' . $parent['parentcode'] . '</td>  
-                        <td class="text-capitalize p-3">' . $parent['parentcode'] . '</td>  
-                      
                         <td class="p-3">' . $parent['created_at'] . '</td>
                         </td>
                         <td style="max-width:120px"class=" p-3">
@@ -75,7 +83,6 @@ include "../config/functionStatement.php";
                         </td>
                     </tr>';
                     }
-                    // parents's pagination
                     ?>
                 </tbody>
             </table>

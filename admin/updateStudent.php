@@ -3,7 +3,7 @@ session_start();
 include '../config/connect.php';
 include '../config/functionStatement.php';
 // get id
-$studentID = $_GET['updatestudentid'] ?? $_POST['updatestudentid'] ?? '';
+$studentID = $_GET['updatestudentid'] ?? $_POST['updatestudentid'] ?? null;
 // sql to show value into update input
 $sql = "SELECT * FROM `students` WHERE id = $studentID";
 $result = executeStatement($sql);
