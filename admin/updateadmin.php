@@ -7,13 +7,6 @@ $adminID = $_GET['updateadminid'] ?? $_POST['updateadminid'] ?? null;
 $sql = "SELECT * FROM `admins` WHERE `id` = '$adminID'";
 $result = executeStatement($sql);
 $row = $result->fetch_assoc();
-echo '<pre>';
-var_dump($row);
-echo '</pre>';
-$name = $row['name'];
-echo '<pre>';
-var_dump($name);
-echo '</pre>';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update'])) {
         $name = validData($_POST['name']);

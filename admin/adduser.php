@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2 class="text-center text-uppercase mt-5 mb-4" style="letter-spacing:2px; font-weight:900">Thêm sinh viên</h2>
     <div class="container mt-2  mx-auto shadow"
         style="max-width:40%; background:#fff; padding: 30px; margin: 90px 0; border-radius:30px;">
-        <form method="post" class="p-4">
+        <form method="post" class="p-4" action="adduser.php">
             <div class="mb-3">
                 <label class="form-label fw-bold">Tên sinh viên:</label>
                 <input type="text"
@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div>
-                <button class="btn btn-primary px-4 mt-2 text-capitalize rounded-pill w-100 fw-bold" name="addnewuser"
+                <button class="btn btn-primary mt-3 text-capitalize rounded-pill w-100 fw-bold" name="addnewuser"
                     style="font-size:18px">Thêm mới
                     sinh
                     viên</button>

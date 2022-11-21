@@ -24,7 +24,7 @@ include_once "../config/functionStatement.php";
         <table class="table table-bordered table-striped text-center align-middle bg-light mt-5 mb-3">
             <thead class="fw-bold">
                 <tr>
-                    <td class="text-uppercase p-3" style="font-size:18px" width="10%">ID</td>
+                    <td class="text-uppercase p-3" style="font-size:18px" width="7%">ID</td>
                     <td class="text-uppercase p-3" style="font-size:18px">Tên sinh viên</td>
                     <td class="text-uppercase p-3" style="font-size:18px">Mã số sinh viên</td>
                     <td class="text-uppercase p-3" style="font-size:18px">Lớp</td>
