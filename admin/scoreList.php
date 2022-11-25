@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once "../config/connect.php";
 include_once "../config/functionStatement.php";
 ?>

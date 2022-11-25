@@ -10,9 +10,7 @@ $row = $result->fetch_assoc();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update'])) {
         $name = validData($_POST['name']);
-        $sql = "UPDATE `admins` 
-            SET `id` = '$adminID', `name`= '$name'
-            WHERE `id` = '$adminID'";
+        $sql = "UPDATE `admins` SET `id` = '$adminID', `name`= '$name' WHERE `id` = '$adminID'";
         $result = executeStatement($sql);
         if ($result) {
             echo '<script type="text/javascript">
@@ -38,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php include "./template/header.php" ?>
     <button class="btn btn-primary ms-4 mt-5">
-        <a href="adminlist.php" class="text-decoration-none text-light">Xem danh sách</a>
+        <a href="adminlist.php" class="text-decoration-none text-light fw-bold" style="font-size:18px">Xem danh
+            sách</a>
     </button>
     <h3 class="text-center text-uppercase mt-5 mb-4" style="letter-spacing:2px; font-weight:900">Chỉnh sửa thông tin
         cán bộ

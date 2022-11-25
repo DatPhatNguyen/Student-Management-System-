@@ -1,36 +1,37 @@
 <?php
 include "../config/connect.php";
 include "../config/functionStatement.php";
+$check = false;
+$errors = [];
+define('REQUIRE_FIELD_ERROR', 'Vui lòng điền vào trường này');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = validData($_POST['name']);
     $email = validData($_POST['email']);
     $password = md5($_POST['password']);
-    echo $password;
     $confirmpassword = md5($_POST['confirmpassword']);
-    $check = false;
-    $errors = [];
-    define('REQUIRE_FIELD_ERROR', 'Vui lòng điền vào trường này');
-    //! check
+    //todo: check
     if (empty($name) || empty($email) || empty($password) || empty($confirmpassword)) {
         $errors['name'] = $errors['email'] = $errors['password'] = $errors['confirmpassword'] = REQUIRE_FIELD_ERROR;
         $check = false;
-    } else if ($password = $confirmpassword  === 'd41d8cd98f00b204e9800998ecf8427e') {
-        $errors['password'] = $errors['confirmpassword'] = REQUIRE_FIELD_ERROR;
-    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = "Không đúng định dạng email";
-        $check = false;
-    }
-    // else if (strlen($password) < 6) {
-    //     $errors['password'] = "Mật khẩu phải lớn hơn 6 kí tự";
-    //     $check = false;
-    // }
-    else if (!strcmp($confirmpassword, $password) && ($confirmpassword !== $password)) {
-        $errors['confirmpassword'] = 'Mật khẩu không trùng khớp';
-        $check = false;
+        if ($password = $confirmpassword  === 'd41d8cd98f00b204e9800998ecf8427e') {
+            $errors['password'] = $errors['confirmpassword'] = REQUIRE_FIELD_ERROR;
+            $check = false;
+        }
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors['email'] = "Không đúng định dạng email";
+            $check = false;
+        }
+        // else if (strlen($password) < 6) {
+        //     $errors['password'] = "Mật khẩu phải lớn hơn 6 kí tự";
+        //     $check = false;
+        // }
+        if (!strcmp($confirmpassword, $password) && ($confirmpassword !== $password)) {
+            $errors['confirmpassword'] = 'Mật khẩu không trùng khớp';
+            $check = false;
+        }
     } else {
         $sql = "SELECT * FROM `parents` WHERE email = '$email' AND password = '$password'";
         $result = executeStatement($sql);
-        if ($result) {
             $numberOfAccount = mysqli_num_rows($result);
             if ($numberOfAccount > 0) {
                 echo "<script language='javascript' type='text/javascript'>
@@ -39,24 +40,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </script>";
                 $check = false;
             } else {
-                $sql = "INSERT INTO `parents` 
-                (`name`,`email`,`password`,`confirmpassword`) VALUES 
+                $sql = "INSERT INTO `parents`  
+                (name,email,password,confirmpassword) VALUES 
                 ('$name','$email','$password','$confirmpassword')";
-                echo $password;
                 $result = executeStatement($sql);
-                echo $result;
                 if ($result) {
                     echo "<script language='javascript' type='text/javascript'>
-                                window.alert('Đăng ký thành công');
+                                window.alert('Đăng ký thành công')
+                                window.location.href='signin.php'
                                 </script>";
                     $check = true;
                 }
             }
         }
     }
-    echo '<pre>';
-    var_dump($_POST, $result);
-    echo '</pre>';
 }
 ?>
 

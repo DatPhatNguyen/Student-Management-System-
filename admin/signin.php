@@ -79,10 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button type="submit" class="btn btn-primary w-100 text-capitalize fw-bold rounded-pill mt-3 btn-lg"
                         style="font-size:18px" name="signin">Đăng nhập</button>
                 </div>
-                <p class="mb-3 mt-4 text-center text-black" style="font-size:16px;">Chưa có tài khoản?
-                    <a href="signup.php" class="text-center fw-bold">Tạo tài khoản
-                    </a>
-                </p>
             </form>
         </div>
     </div>
