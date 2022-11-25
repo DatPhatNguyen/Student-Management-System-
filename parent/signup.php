@@ -32,25 +32,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $sql = "SELECT * FROM `parents` WHERE email = '$email' AND password = '$password'";
         $result = executeStatement($sql);
-            $numberOfAccount = mysqli_num_rows($result);
-            if ($numberOfAccount > 0) {
-                echo "<script language='javascript' type='text/javascript'>
+        $numberOfAccount = mysqli_num_rows($result);
+        if ($numberOfAccount > 0) {
+            echo "<script language='javascript' type='text/javascript'>
                 window.alert('Email đã tồn tại. Vui lòng nhập email khác !!');
                 window.location.href ='signup.php';
                 </script>";
-                $check = false;
-            } else {
-                $sql = "INSERT INTO `parents`  
+            $check = false;
+        } else {
+            $sql = "INSERT INTO `parents`  
                 (name,email,password,confirmpassword) VALUES 
                 ('$name','$email','$password','$confirmpassword')";
-                $result = executeStatement($sql);
-                if ($result) {
-                    echo "<script language='javascript' type='text/javascript'>
+            $result = executeStatement($sql);
+            if ($result) {
+                echo "<script language='javascript' type='text/javascript'>
                                 window.alert('Đăng ký thành công')
                                 window.location.href='signin.php'
                                 </script>";
-                    $check = true;
-                }
+                $check = true;
             }
         }
     }
