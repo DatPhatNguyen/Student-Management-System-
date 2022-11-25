@@ -32,19 +32,10 @@
                     '<div class="pt-1 mt-1">
                     <p class="me-3" style="font-weight:700; font-size:18px; display:inline-block">' . $_SESSION['parent'] . '</p>
                     <button type="submit" class=" border btn btn-danger py-2 px-4 text-center ">
-                        <a href="../pages/logout.php?action="logout"" class="text-white text-decoration-none text-capitalize text-button">Đăng xuất</a>
+                    <a href="../pages/logout.php?action="logout"" class="text-white text-decoration-none text-capitalize text-button">Đăng xuất</a>
                     </button>
-                </div>'
-                    : ' <div class="pt-1">
-                        <button type="submit" class=" border btn btn-primary py-2 px-4 text-center ">
-                            <a href="signup.php" class="text-white text-decoration-none text-capitalize text-button">Đăng
-                                ký</a>
-                        </button>
-                        <button type="submit" class=" border btn btn-danger py-2 px-4 text-center ms-3 ">
-                            <a href="signin.php" class="text-white text-decoration-none text-capitalize text-button">Đăng
-                                nhập</a>    
-                        </button>
-                    </div>';
+                    </div>'
+                    : '';
                 ?>
                 <?php
                 include_once "receiveMessage.php"

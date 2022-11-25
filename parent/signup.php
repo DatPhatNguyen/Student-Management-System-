@@ -4,8 +4,9 @@ include "../config/functionStatement.php";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = validData($_POST['name']);
     $email = validData($_POST['email']);
-    $password = trim(md5(mysqli_real_escape_string($conn, $_POST['password'])));
-    $confirmpassword = trim(md5(mysqli_real_escape_string($conn, $_POST['confirmpassword'])));
+    $password = md5($_POST['password']);
+    echo $password;
+    $confirmpassword = md5($_POST['confirmpassword']);
     $check = false;
     $errors = [];
     define('REQUIRE_FIELD_ERROR', 'Vui lòng điền vào trường này');
@@ -13,28 +14,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($name) || empty($email) || empty($password) || empty($confirmpassword)) {
         $errors['name'] = $errors['email'] = $errors['password'] = $errors['confirmpassword'] = REQUIRE_FIELD_ERROR;
         $check = false;
-    }
-    if ($password = $confirmpassword  === 'd41d8cd98f00b204e9800998ecf8427e') {
+    } else if ($password = $confirmpassword  === 'd41d8cd98f00b204e9800998ecf8427e') {
         $errors['password'] = $errors['confirmpassword'] = REQUIRE_FIELD_ERROR;
-    } else if (strlen($name) < 6) {
-        $errors['name'] = "Họ và tên phải lớn hơn 6 kí tự";
-        $check = false;
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Không đúng định dạng email";
         $check = false;
-    } else if (strlen($password) < 6) {
-        $errors['password'] = 'Mật khẩu phải lớn hơn 6 kí tự';
-        $check = false;
-    } else if (!strcmp($confirmpassword, $password)) {
+    }
+    // else if (strlen($password) < 6) {
+    //     $errors['password'] = "Mật khẩu phải lớn hơn 6 kí tự";
+    //     $check = false;
+    // }
+    else if (!strcmp($confirmpassword, $password) && ($confirmpassword !== $password)) {
         $errors['confirmpassword'] = 'Mật khẩu không trùng khớp';
         $check = false;
-    }
-    // } else if ($confirmpassword !== $password) {
-    //     $errors['confirmpassword'] = 'Mật khẩu không trùng khớp';
-    //     $check = false;
-    // } 
-    else {
-        $sql = "SELECT * FROM `parents` WHERE email = '$email' && password = '$password'";
+    } else {
+        $sql = "SELECT * FROM `parents` WHERE email = '$email' AND password = '$password'";
         $result = executeStatement($sql);
         if ($result) {
             $numberOfAccount = mysqli_num_rows($result);
@@ -45,18 +39,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </script>";
                 $check = false;
             } else {
-                $sql = "INSERT INTO `parents` (name,email ,password,confirmpassword) VALUES ('$name','$email','$password','$confirmpassword')";
+                $sql = "INSERT INTO `parents` 
+                (`name`,`email`,`password`,`confirmpassword`) VALUES 
+                ('$name','$email','$password','$confirmpassword')";
+                echo $password;
                 $result = executeStatement($sql);
+                echo $result;
                 if ($result) {
                     echo "<script language='javascript' type='text/javascript'>
                                 window.alert('Đăng ký thành công');
-                                window.location.href='signin.php'
                                 </script>";
                     $check = true;
                 }
             }
         }
     }
+    echo '<pre>';
+    var_dump($_POST, $result);
+    echo '</pre>';
 }
 ?>
 
@@ -105,37 +105,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </header>
     <?php include_once "../pages/typeOfUser.php" ?>
-
     <div class="row mx-auto shadow" style="max-width:65%;border-radius:24px; background:#fff; margin: 40px 0;">
         <div class="col-lg-6 col-sm-6" style="border-top-left-radius:24px;border-bottom-left-radius:24px">
             <img src="../template/images/parent-signup.jpg" class="mx-auto my-3"
                 style="object-position:center;object-fit:cover; max-width:100%;max-height:100%">
         </div>
         <div class="col-lg-6 col-sm-6">
-            <form method="POST" action='signup.php' style="padding:50px" accept-charset="utf-8" novalidate
-                class="needs-validation">
+            <form method="POST" action='signup.php' style="padding:50px">
                 <h2 class="text-center text-capitalize mb-3">Đăng ký</h2>
                 <div class="form-group">
                     <label class="form-label fw-bold">Họ và tên:</label>
-                    <input type="text" required="required"
+                    <input type="text"
                         class="form-control  <?php echo isset($errors['name']) ? 'border border-danger' : "" ?> "
                         placeholder=" Họ và tên.." name="name" autocomplete="off"
-                        value=<?php echo $name ?? $_POST['name'] ?? '' ?>>
+                        value="<?php echo $name ?? $_POST['name'] ?? '' ?>">
                     <?php echo isset($errors['name']) ? '<p class="text-danger  mt-2">' . $errors["name"] . '</p>' :
                         "<div class='mt-2'></div>" ?>
                 </div>
                 <div class="form-group">
                     <label class="form-label fw-bold">Email:</label>
-                    <input type="email" required="required"
+                    <input type="email"
                         class="form-control <?php echo isset($errors['email']) ? 'border border-danger' : "" ?> "
                         placeholder="Email..." name="email" autocomplete="off "
-                        value=<?php echo $email ?? $_POST['email'] ?? '' ?>>
+                        value="<?php echo $email ?? $_POST['email'] ?? '' ?>">
                     <?php echo isset($errors['email']) ? '<p class="text-danger  mt-2">' . $errors["email"] . '</p>' :
                         "<div class='mt-2'></div>" ?>
                 </div>
                 <div class="form-group">
                     <label class="form-label fw-bold">Mật khẩu:</label>
-                    <input type="password" required="required"
+                    <input type="password"
                         class="form-control   <?php echo isset($errors['password']) ? 'border border-danger' : "" ?>"
                         placeholder=" Mật khẩu..." name="password" autocomplete="off">
                     <?php echo isset($errors['password']) ? '<p class="text-danger  mt-2">' . $errors["password"] . '</p>' :
@@ -143,13 +141,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="form-group">
                     <label class="form-label fw-bold">Xác nhận lại mật khẩu:</label>
-                    <input type="password" required="required"
+                    <input type="password"
                         class="form-control <?php echo isset($errors['confirmpassword']) ? 'border border-danger' : "" ?>"
                         placeholder=" Nhập lại mật khẩu của bạn..." name="confirmpassword" autocomplete="off">
                     <?php echo isset($errors['confirmpassword']) ? '<p class="text-danger  mt-2">' . $errors["confirmpassword"] . '</p>' :
                         "<div class='mt-2'></div>" ?>
                 </div>
-
                 <div class=" d-block text-center">
                     <button type="submit" class="btn btn-primary w-100 text-capitalize my-3 fw-bold p-2 rounded-pill"
                         style="font-size:18px" name="signup">Đăng ký</button>

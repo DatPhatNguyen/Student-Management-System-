@@ -84,6 +84,10 @@ include_once "../config/functionStatement.php";
                 WHERE $parentID= st.id";
                 $messages = executeStatement($sql);
                 $row = $messages->fetch_assoc();
+                if (empty($row)) {
+                    error_reporting(0);
+                    ini_set('display_errors', 0);
+                }
                 echo '
                 <p>Gửi đến phụ huynh em : <span class="fw-bold">' . $row['name'] . '</span></p>
                 <p>Kết quả học tập :</p>';
@@ -120,6 +124,7 @@ $(document).ready(function() {
         e.preventDefault();
         $("#message").css("display", "block");
     });
+
     $('.btn-close').click(function() {
         message.css('display', 'none');
     })
