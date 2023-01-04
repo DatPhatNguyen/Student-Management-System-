@@ -8,13 +8,13 @@
     <title>Chọn loại người dùng</title>
     <?php include_once "./script.php" ?>
     <style>
-    body {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 

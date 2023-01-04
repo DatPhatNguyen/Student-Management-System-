@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($password === 'd41d8cd98f00b204e9800998ecf8427e') {
         $errors['password'] = REQUIRE_FIELD_ERROR;
     }
+
     if (empty($stcode) || empty($password)) {
         $errors['stcode'] = $errors['password'] =  REQUIRE_FIELD_ERROR;
         echo '<script type="text/javascript">
@@ -110,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="text"
                         class="form-control <?php echo isset($errors['stcode']) ? 'border border-danger' : "" ?>"
                         placeholder="Nhập mã số sinh viên" name="stcode" minlength="8" maxlength="8"
-                        value=<?php echo isset($stcode) ? $stcode : "" ?>>
+                        autocomplete="off" value=<?php echo isset($stcode) ? $stcode : "" ?>>
                     <p class="text-danger mt-2">
                         <?php echo $errors['stcode'] ?? $errors['stcode']  ?? "" ?>
                     </p>
@@ -119,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label class="form-label fw-bold">Mật khẩu:</label>
                     <input type="password"
                         class="form-control <?php echo isset($errors['password']) ? 'border border-danger' :  "" ?>"
-                        placeholder="Mật khẩu của bạn..." name="password">
+                        placeholder="Mật khẩu của bạn..." name="password" autocomplete="off">
                     <p class="text-danger mt-2">
                         <?php echo $errors['password'] ?? $errors['password'] ?? "" ?>
                     </p>

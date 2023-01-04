@@ -116,6 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php echo isset($errors['email']) ? $errors['email'] : "" ?>
                     </p>
                 </div>
+
                 <div class="mb-3">
                     <label class="form-label fw-bold">Mật khẩu:</label>
                     <input type="password"
@@ -127,8 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="d-block text-center mt-4">
                     <button type="submit" class="btn btn-primary w-100 text-capitalize fw-bold rounded-pill btn-lg"
-                        style="font-size:18px" name="signin">Đăng
-                        nhập</button>
+                        style="font-size:18px" name="signin">Đăng nhập</button>
                 </div>
                 <div class="mt-3">
                     <p class="text-center">Bạn chưa có tài khoản?

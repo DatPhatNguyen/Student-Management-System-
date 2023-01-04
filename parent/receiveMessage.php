@@ -22,20 +22,6 @@ include_once "../config/functionStatement.php";
         color: #fff;
     }
 
-    /* #notification:after {
-        content: "1";
-        position: absolute;
-        top: -15%;
-        right: -15px;
-        font-size: 14px;
-        color: #fff;
-        font-weight: bold;
-        background: red;
-        border-radius: 6px;
-        padding: 8px 10px;
-        text-align: center;
-    } */
-
     #notification:hover {
         color: blue;
         cursor: pointer;

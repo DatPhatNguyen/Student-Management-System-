@@ -28,9 +28,8 @@ include "../config/functionStatement.php";
             <table class="table table-bordered table-striped text-center align-middle bg-light  mt-5 mb-3">
                 <thead class="text-uppercase text-black lh-lg">
                     <tr>
-                        <th scope="col" width="15%" class="p-3">Tên phụ huynh</th>
-                        <th scope="col" class="p-3">Email phụ huynh</th>
-                        <th scope="col" class="p-3">Mã số phụ huynh</th>
+                        <th scope="col" width="20%" class="p-3">Tên phụ huynh</th>
+                        <th scope="col" class="p-3" width="15%">Email phụ huynh</th>
                         <th scope="col" width="20%" class="p-3">Ngày thêm</th>
                         <th scope="col" width="20%" class="p-3">Xóa / Sửa</th>
                     </tr>
@@ -55,7 +54,6 @@ include "../config/functionStatement.php";
                         echo '<tr>
                         <td class="text-capitalize p-3">' . $parent['name'] . '</td>
                         <td class="p-3">' . $parent['email'] . '</td>
-                        <td class="text-capitalize p-3">' . $parent['parentcode'] . '</td>  
                         <td class="p-3">' . $parent['created_at'] . '</td>
                         </td>
                         <td style="max-width:120px"class=" p-3">

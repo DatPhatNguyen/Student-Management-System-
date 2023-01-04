@@ -74,13 +74,8 @@
                             class="fa-solid fa-plus me-4"></i>Thêm cán
                         bộ</a>
                 </p>
-                <hr>
             </div>
-            <div class="d-flex justify-content-around my-5">
-                <a class="text-black   text-capitalize" href="https://www.facebook.com/CTU.dtn.cntttt"
-                    target="_blank">Facebook</a>
-                <a class="text-black  text-capitalize" href="http://www.cit.ctu.edu.vn/" target="_blank">Website</a>
-            </div>
+
         </div>
     </div>
 </body>

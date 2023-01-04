@@ -146,5 +146,4 @@ function logOut()
     session_unset();
     session_destroy();
     header('location: ../category.php');
-    exit();
 }

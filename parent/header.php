@@ -14,7 +14,6 @@
     <header class="header" id="header" style="background:#fff;">
         <div class="container-fluid mx-auto shadow header-container" id="top">
             <div class=" d-flex justify-content-between  align-items-center mx-5">
-                <!-- index logo -->
                 <div>
                     <a href='index.php'><img src='../template/images/logo-ctu.png' class='d-inline-block'
                             style='width:60px; height:auto;'></a>

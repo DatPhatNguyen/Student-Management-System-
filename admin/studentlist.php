@@ -26,12 +26,12 @@ include_once "../config/functionStatement.php";
             <table class="table table-bordered table-striped text-center align-middle bg-light mt-5 mb-3">
                 <thead>
                     <tr>
-                        <th scope="col" width="15%" class="p-3">Tên sinh viên</th>
-                        <th scope="col" width="15%" class="p-3">Mã số sinh viên</th>
-                        <th scope="col" width="10%" class="p-3">Lớp</th>
-                        <th scope="col" class="p-3" width="15%">Xem Chi tiết</th>
-                        <th scope=" col" width="20%" class="p-3">Xóa / Sửa</th>
-                        <th scope="col" width="20%" class="p-3">Nhập điểm sinh viên</th>
+                        <th scope="col" width="15%" class="p-3 text-capitalize ">Tên sinh viên</th>
+                        <th scope="col" width="15%" class="p-3 text-capitalize ">Mã số sinh viên</th>
+                        <th scope="col" width="10%" class="p-3 text-capitalize ">Lớp</th>
+                        <th scope="col" class="p-3 text-capitalize " width="15%">Xem Chi tiết</th>
+                        <th scope=" col" width="20%" class="p-3 text-capitalize ">Xóa / Sửa Thông Tin</th>
+                        <th scope="col" width="20%" class="p-3 text-capitalize  ">Nhập điểm sinh viên</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -107,50 +107,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 style="object-position:center;object-fit:cover; max-width:100%;max-height:100%">
         </div>
         <div class="col-lg-6 col-sm-6">
-            <form method="POST" action='signup.php' style="padding:50px">
-                <h2 class="text-center text-capitalize mb-3">Đăng ký</h2>
-                <div class="form-group">
-                    <label class="form-label fw-bold">Họ và tên:</label>
-                    <input type="text"
-                        class="form-control  <?php echo isset($errors['name']) ? 'border border-danger' : "" ?> "
-                        placeholder=" Họ và tên.." name="name" autocomplete="off"
-                        value="<?php echo $name ?? $_POST['name'] ?? '' ?>">
-                    <?php echo isset($errors['name']) ? '<p class="text-danger  mt-2">' . $errors["name"] . '</p>' :
-                        "<div class='mt-2'></div>" ?>
-                </div>
-                <div class="form-group">
-                    <label class="form-label fw-bold">Email:</label>
-                    <input type="email"
-                        class="form-control <?php echo isset($errors['email']) ? 'border border-danger' : "" ?> "
-                        placeholder="Email..." name="email" autocomplete="off "
-                        value="<?php echo $email ?? $_POST['email'] ?? '' ?>">
-                    <?php echo isset($errors['email']) ? '<p class="text-danger  mt-2">' . $errors["email"] . '</p>' :
-                        "<div class='mt-2'></div>" ?>
-                </div>
-                <div class="form-group">
-                    <label class="form-label fw-bold">Mật khẩu:</label>
-                    <input type="password"
-                        class="form-control   <?php echo isset($errors['password']) ? 'border border-danger' : "" ?>"
-                        placeholder=" Mật khẩu..." name="password" autocomplete="off">
-                    <?php echo isset($errors['password']) ? '<p class="text-danger  mt-2">' . $errors["password"] . '</p>' :
-                        "<div class='mt-2'></div>" ?>
-                </div>
-                <div class="form-group">
-                    <label class="form-label fw-bold">Xác nhận lại mật khẩu:</label>
-                    <input type="password"
-                        class="form-control <?php echo isset($errors['confirmpassword']) ? 'border border-danger' : "" ?>"
-                        placeholder=" Nhập lại mật khẩu của bạn..." name="confirmpassword" autocomplete="off">
-                    <?php echo isset($errors['confirmpassword']) ? '<p class="text-danger  mt-2">' . $errors["confirmpassword"] . '</p>' :
-                        "<div class='mt-2'></div>" ?>
-                </div>
-                <div class=" d-block text-center">
-                    <button type="submit" class="btn btn-primary w-100 text-capitalize my-3 fw-bold p-2 rounded-pill"
-                        style="font-size:18px" name="signup">Đăng ký</button>
-                </div>
-                <p class="text-center ">Bạn đã có tài khoản<a href="signin.php" class="ms-1 fw-bold">Đăng
-                        nhập</a></p>
-            </form>
+            <form method="POST" action='signup.php' style="padding:50px ">
+                <h2 class=" text-center text-capitalize mb-3">Đăng ký</h2>
+                <div class="form-group"></div>
+                <label class="form-label fw-bold">Họ và tên:</label>
+                <input type="text"
+                    class="form-control  <?php echo isset($errors['name']) ? 'border border-danger' : "" ?> "
+                    placeholder=" Họ và tên.." name="name" autocomplete="on" readonly
+                    value="<?php echo $name ?? $_POST['name'] ?? '' ?>">
+                <?php echo isset($errors['name']) ? '<p class="text-danger  mt-2">' . $errors["name"] . '</p>' :
+                    "<div class='mt-2'></div>" ?>
         </div>
+        <div class="form-group">
+            <label class="form-label fw-bold">Email:</label>
+            <input type="email"
+                class="form-control <?php echo isset($errors['email']) ? 'border border-danger' : "" ?> "
+                placeholder="Email..." name="email" autocomplete="on"
+                value="<?php echo $email ?? $_POST['email'] ?? '' ?>">
+            <?php echo isset($errors['email']) ? '<p class="text-danger  mt-2">' . $errors["email"] . '</p>' :
+                "<div class='mt-2'></div>" ?>
+        </div>
+        <div class="form-group">
+            <label class="form-label fw-bold">Mật khẩu:</label>
+            <input type="password"
+                class="form-control   <?php echo isset($errors['password']) ? 'border border-danger' : "" ?>"
+                placeholder=" Mật khẩu..." name="password" autocomplete="off">
+            <?php echo isset($errors['password']) ? '<p class="text-danger  mt-2">' . $errors["password"] . '</p>' :
+                "<div class='mt-2'></div>" ?>
+        </div>
+        <div class="form-group">
+            <label class="form-label fw-bold">Xác nhận lại mật khẩu:</label>
+            <input type="password"
+                class="form-control <?php echo isset($errors['confirmpassword']) ? 'border border-danger' : "" ?>"
+                placeholder=" Nhập lại mật khẩu của bạn..." name="confirmpassword" autocomplete="off">
+            <?php echo isset($errors['confirmpassword']) ? '<p class="text-danger  mt-2">' . $errors["confirmpassword"] . '</p>' :
+                "<div class='mt-2'></div>" ?>
+        </div>
+        <div class=" d-block text-center">
+            <button type="submit" class="btn btn-primary w-100 text-capitalize my-3 fw-bold p-2 rounded-pill"
+                style="font-size:18px" name="signup">Đăng ký</button>
+        </div>
+        <p class="text-center ">Bạn đã có tài khoản<a href="signin.php" class="ms-1 fw-bold">Đăng
+                nhập</a></p>
+        </form>
+    </div>
     </div>
     <?php include "../template/footer.php"; ?>;
 </body>
